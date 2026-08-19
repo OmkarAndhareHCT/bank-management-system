@@ -1,0 +1,44 @@
+# Local development infrastructure for the Banking Management System.
+#
+#   docker compose up -d      start everything
+#   docker compose ps         check status
+#   docker compose logs -f    follow logs
+#   docker compose down       stop (keeps data)
+#   docker compose down -v    stop and WIPE all data
+
+services:
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: bms-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: bms
+      POSTGRES_PASSWORD: bms123
+      POSTGRES_DB: postgres
+    volumes:
+      - bms-pgdata:/var/lib/postgresql/data
+      - ./infra/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bms"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: bms-pgadmin
+    depends_on:
+      - postgres
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@bms.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    volumes:
+      - bms-pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  bms-pgdata:
+  bms-pgadmin-data:

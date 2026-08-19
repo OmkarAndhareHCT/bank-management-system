@@ -1,0 +1,11 @@
+CREATE DATABASE bms_auth;
+CREATE DATABASE bms_customer;
+CREATE DATABASE bms_employee;
+CREATE DATABASE bms_branch;
+CREATE DATABASE bms_account;
+CREATE DATABASE bms_loan;
+CREATE DATABASE bms_transaction;
+CREATE DATABASE bms_fraud;
+CREATE DATABASE bms_notification;
+CREATE DATABASE bms_statistics;
+CREATE DATABASE bms_storage;
