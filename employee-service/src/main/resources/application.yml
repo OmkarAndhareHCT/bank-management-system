@@ -1,0 +1,36 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: employee-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bms_employee
+    username: bms
+    password: bms123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: false
+
+bms:
+  branch-service:
+    base-url: http://localhost:8084
+    timeout-ms: 2000
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      defaultZone: http://l
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,inf
