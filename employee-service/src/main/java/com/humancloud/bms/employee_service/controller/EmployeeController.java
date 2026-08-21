@@ -3,6 +3,7 @@ package com.humancloud.bms.employee_service.controller;
 import com.humancloud.bms.employee_service.dto.EmployeeRequest;
 import com.humancloud.bms.employee_service.dto.EmployeeResponse;
 import com.humancloud.bms.employee_service.dto.EmployeeUpdateRequest;
+import com.humancloud.bms.employee_service.dto.ManagerAssignRequest;
 import com.humancloud.bms.employee_service.enums.Role;
 import com.humancloud.bms.employee_service.service.EmployeeServiceI;
 import jakarta.validation.Valid;
@@ -71,7 +72,7 @@ public class EmployeeController {
 //    @PatchMapping("/{id}/manager")
 //    public EmployeeResponse setManager(@PathVariable Long id,
 //                                       @RequestBody ManagerAssignRequest req) {
-//        return service.setManager(id, req.managerId());
+//        return employeeServiceI.setManager(id, req.managerId());
 //    }
 
     /**

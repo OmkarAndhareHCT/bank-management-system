@@ -16,6 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeServiceI {
@@ -33,7 +36,13 @@ public class EmployeeServiceImpl implements EmployeeServiceI {
 
         branchClient.assertBranchExists(req.branchId());
 
+        String employeeNumber = "EMP-" + UUID.randomUUID()
+                .toString()
+                .substring(0, 8)
+                .toUpperCase();
+
         Employee employee = repository.save(Employee.builder()
+                .employeeNumber(employeeNumber)
                 .name(req.name())
                 .phone(req.phone())
                 .email(req.email())
